@@ -1,0 +1,40 @@
+CREATE TABLE users (
+  Enrollment_Number INT PRIMARY KEY,
+  Role INT,
+  Name VARCHAR(255),
+  Email VARCHAR(255),
+  Password VARCHAR(255)
+);
+ALTER TABLE users add Subject_Role Int;
+
+-----------------------------------------------------------------
+Duplication handling in Add Faculty-Done
+
+----------------------------------------------------------------------
+CREATE TABLE result (
+  Enrollment_Number INT NOT NULL,
+  firstName VARCHAR(255) NOT NULL,
+  C INT,
+  JAVA INT,
+  PYTHON INT,
+  MATHS INT,
+  FOREIGN KEY (Enrollment_Number) REFERENCES users(Enrollment_Number),
+  CHECK (C IS NULL OR C BETWEEN 0 AND 150),
+  CHECK (JAVA IS NULL OR JAVA BETWEEN 0 AND 150),
+  CHECK (PYTHON IS NULL OR PYTHON BETWEEN 0 AND 150),
+  CHECK (MATHS IS NULL OR MATHS BETWEEN 0 AND 150)
+);
+
+-------------------------------------------------------------------------
+22/04/2023
+
+1-Encryption using Bcrypt
+2-DELETE AND VIEW MARKS IN FACULTY DASHBOARD
+->Faculty DashBoard : Add Marks 
+
+3-RAMAINING PENDIND WORK OF FACULTYDASHBOARD
+
+-----------------------------------------------------------------------
+
+check wroking of session for Student and Faculty , or else create cookie for it .
+and add marks to the result table.
