@@ -11,19 +11,29 @@ ALTER TABLE users add Subject_Role Int;
 Duplication handling in Add Faculty-Done
 
 ----------------------------------------------------------------------
-CREATE TABLE result (
-  Enrollment_Number INT NOT NULL,
-  firstName VARCHAR(255) NOT NULL,
-  C INT,
-  JAVA INT,
-  PYTHON INT,
-  MATHS INT,
-  FOREIGN KEY (Enrollment_Number) REFERENCES users(Enrollment_Number),
-  CHECK (C IS NULL OR C BETWEEN 0 AND 150),
-  CHECK (JAVA IS NULL OR JAVA BETWEEN 0 AND 150),
-  CHECK (PYTHON IS NULL OR PYTHON BETWEEN 0 AND 150),
-  CHECK (MATHS IS NULL OR MATHS BETWEEN 0 AND 150)
+CREATE TABLE Result (
+Enrollment_Number INT PRIMARY KEY,
+firstName VARCHAR(255),
+Internal_C INT,
+External_C INT,
+Practical_C INT,
+Internal_Java INT,
+External_Java INT,
+Practical_Java INT,
+Internal_Python INT,
+External_Python INT,
+Practical_Python INT,
+Internal_Maths INT,
+External_Maths INT,
+total_C INT,
+total_Java INT,
+total_Python INT,
+total_Maths INT,
+Total INT,
+SPI DECIMAL(4,2),
+Status VARCHAR(10)
 );
+
 
 -------------------------------------------------------------------------
 22/04/2023
@@ -38,3 +48,27 @@ CREATE TABLE result (
 
 check wroking of session for Student and Faculty , or else create cookie for it .
 and add marks to the result table.
+
+
+----------------------------------------------------------------------------
+
+->check why Marks are not entered into result Table
+
+->set subject in jsp addMarks .........
+
+
+		<div>
+            <label for="internalMarks">Internal Marks (out of 40):</label>
+            <input type="number" id="internalMarks" name="internalMarks" min="0" max="40" required>
+            <span class="error"></span>
+        </div>
+        <div>
+            <label for="externalMarks">External Marks (out of 60):</label>
+            <input type="number" id="externalMarks" name="externalMarks" min="0" max="60" required>
+            <span class="error"></span>
+        </div>
+        <div>
+            <label for="practicalMarks">Practical-Viva (out of 50):</label>
+            <input type="number" id="practicalMarks" name="practicalMarks" min="0" max="50" required>
+            <span class="error"></span>
+        </div>

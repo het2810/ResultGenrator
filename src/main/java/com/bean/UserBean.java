@@ -1,5 +1,8 @@
 package com.bean;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class UserBean {
 	String firstName;
 	String email;
