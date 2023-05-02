@@ -24,7 +24,7 @@ public class FacultyDashboardController {
 
 	@Autowired
 	UserDao userDao;
-
+	
 	@Autowired
 	JdbcTemplate stmt;
 
@@ -44,6 +44,9 @@ public class FacultyDashboardController {
 	@RequestMapping(value = "/addMarks", method = { RequestMethod.POST })
 	public String addMarks(@ModelAttribute("AddMarksBean") AddMarksBean add, HttpSession session, Model model) {
 		Integer enrollment = (Integer) session.getAttribute("enrollmentNumber");
+		String subject = addMarksDao.getSubjectFromEnrollment(enrollment);
+		System.out.println(subject);
+		model.addAttribute("subject", subject);
 		addMarksDao.addMarks(add, add.getEnrollmentNumber(), enrollment);
 		System.out.println("addMarks");
 		return "AddMarks";

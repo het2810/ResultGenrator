@@ -60,7 +60,6 @@ public class UserDao {
 		return stmt.query("select * from users where Role = 3",new BeanPropertyRowMapper<UserBean>(UserBean.class));
 	}
 	
-	
 	public UserBean getUserByEmail(String email) {
 		String selectUserByEmailQuery = "select * from users where email=?";
 		List<UserBean> users = stmt.query(selectUserByEmailQuery, new BeanPropertyRowMapper<UserBean>(UserBean.class), email);

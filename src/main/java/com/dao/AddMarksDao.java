@@ -17,6 +17,7 @@ public class AddMarksDao {
 	JdbcTemplate stmt;
 
 	public void addMarks(AddMarksBean add, Integer enrollmentNumber, Integer facultyEnrollment) {
+
 		System.out.println("----" + enrollmentNumber);
 		System.out.println(facultyEnrollment);
 		String firstName = stmt.queryForObject("SELECT FIRSTNAME FROM USERS WHERE ENROLLMENT_NUMBER = ?", String.class,
@@ -56,5 +57,12 @@ public class AddMarksDao {
 						add.getExternal_Maths(), (add.getExternal_Maths() + add.getInternal_Maths()));
 			}
 		}
+	}
+	
+	public String getSubjectFromEnrollment(Integer facultyEnrollment) {
+		String subject = stmt.queryForObject("SELECT subjectRoleId FROM USERS WHERE ENROLLMENT_NUMBER = ?",
+				String.class, new Object[] { facultyEnrollment });
+	
+		return "subject";
 	}
 }
