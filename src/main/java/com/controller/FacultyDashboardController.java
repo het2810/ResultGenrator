@@ -51,7 +51,7 @@ public class FacultyDashboardController {
 		System.out.println(enrollment);
 		addMarksDao.addMarks(add, add.getEnrollmentNumber(), enrollment);
 		System.out.println("addMarks");
-		return "AddMarks";
+		return "redirect:/listStudentForMarks";
 	}
 
 	@GetMapping("/listStudentForMarks")
