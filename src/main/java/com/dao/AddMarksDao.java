@@ -62,7 +62,7 @@ public class AddMarksDao {
 	public String getSubjectFromEnrollment(Integer facultyEnrollment) {
 		String subject = stmt.queryForObject("SELECT subjectRoleId FROM USERS WHERE ENROLLMENT_NUMBER = ?",
 				String.class, new Object[] { facultyEnrollment });
-	
-		return "subject";
+		System.out.println(subject);
+		return subject;
 	}
 }

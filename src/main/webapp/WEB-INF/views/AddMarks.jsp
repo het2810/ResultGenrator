@@ -76,7 +76,7 @@ h2 {
 						max="50" required> <span class="error"></span>
 				</div>
 			</c:when>
-			<c:when test="${subject == 'Java'}">
+			<c:when test="${subject == 'JAVA'}">
 				<div>
 					<label for="internalMarks">Internal Marks (out of 40):</label> <input
 						type="number" id="internalMarks" name="internal_Java" min="0"
@@ -93,7 +93,7 @@ h2 {
 						max="50" required> <span class="error"></span>
 				</div>
 			</c:when>
-			<c:when test="${subject == 'Python'}">
+			<c:when test="${subject == 'PYTHON'}">
 				<div>
 					<label for="internalMarks">Internal Marks (out of 40):</label> <input
 						type="number" id="internalMarks" name="internal_Python" min="0"
@@ -110,7 +110,7 @@ h2 {
 						max="50" required> <span class="error"></span>
 				</div>
 			</c:when>
-			<c:when test="${subject == 'Maths'}">
+			<c:when test="${subject == 'MATHS'}">
 				<div>
 					<label for="internalMarks">Internal Marks (out of 40):</label> <input
 						type="number" id="internalMarks" name="internal_Maths" min="0"

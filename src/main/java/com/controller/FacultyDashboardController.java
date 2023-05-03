@@ -36,17 +36,19 @@ public class FacultyDashboardController {
 
 	@RequestMapping(value = "/addMarks", method = { RequestMethod.GET })
 	public String addMarksView(@ModelAttribute("AddMarksBean") AddMarksBean add,
-			@RequestParam("enrollmentNumber") Integer Enrollment_Number, HttpSession session) {
+			@RequestParam("enrollmentNumber") Integer Enrollment_Number, HttpSession session,Model model) {
 		Integer enrollment = (Integer) session.getAttribute("enrollmentNumber");
+		System.out.println(enrollment);
+		String subject = addMarksDao.getSubjectFromEnrollment(enrollment);
+		System.out.println(subject);
+		model.addAttribute("subject", subject);
 		return "AddMarks";
 	}
 
 	@RequestMapping(value = "/addMarks", method = { RequestMethod.POST })
 	public String addMarks(@ModelAttribute("AddMarksBean") AddMarksBean add, HttpSession session, Model model) {
 		Integer enrollment = (Integer) session.getAttribute("enrollmentNumber");
-		String subject = addMarksDao.getSubjectFromEnrollment(enrollment);
-		System.out.println(subject);
-		model.addAttribute("subject", subject);
+		System.out.println(enrollment);
 		addMarksDao.addMarks(add, add.getEnrollmentNumber(), enrollment);
 		System.out.println("addMarks");
 		return "AddMarks";
