@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.bean.AddMarksBean;
 import com.bean.UserBean;
+import com.dao.AddMarksDao;
 import com.dao.UserDao;
 import com.util.EnrollmentAlreadyExistsException;
 
@@ -21,6 +23,9 @@ public class AdminDashboardController {
 	
 	@Autowired
 	UserDao userDao;
+	
+	@Autowired
+	AddMarksDao addMarksDao;
 	
 	@GetMapping("/addStudent")
 	public String addStudent() {
@@ -66,6 +71,14 @@ public class AdminDashboardController {
 			return "AddFaculty";
 		}
 
+	}
+	
+	@GetMapping("/viewMarks")
+	public String viewMarks(@RequestParam("enrollmentNumber") Integer Enrollment_Number,Model model) {
+		System.out.println("viewMarks called............");
+		List<AddMarksBean> studentMarks = addMarksDao.getMarks(Enrollment_Number);
+		model.addAttribute("student",studentMarks);
+		return "viewMarks";
 	}
 	
 	@GetMapping("/listStudents")

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" isELIgnored = "false"%>
+    pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
@@ -50,6 +50,8 @@
         <th>Enrollment Number</th>
         <th>First Name</th>
         <th>Email</th>
+        <th>View Marks</th>
+        <th>Delete</th>
       </tr>
     </thead>
     <tbody>
@@ -59,7 +61,10 @@
           <td>${user.firstName}</td>
           <td>${user.email}</td>
           <td>
-          	<a href="deleteStudent?enrollmentNumber= ${user.enrollmentNumber}">Delete</a>
+            <a href="viewMarks?enrollmentNumber=${user.enrollmentNumber}">View Marks</a>
+          </td>
+          <td>
+            <a href="deleteStudent?enrollmentNumber=${user.enrollmentNumber}">Delete</a>
           </td>
         </tr>
       </c:forEach>
