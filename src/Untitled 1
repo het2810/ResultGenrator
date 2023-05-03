@@ -72,3 +72,7 @@ and add marks to the result table.
             <input type="number" id="practicalMarks" name="practicalMarks" min="0" max="50" required>
             <span class="error"></span>
         </div>
+        
+-------------------------------------------------------------------------------------
+
+-> get a look on viewMarks and updateMarks in the facultyDashboard
