@@ -53,7 +53,18 @@ public class FacultyDashboardController {
 		System.out.println("addMarks");
 		return "redirect:/listStudentForMarks";
 	}
-
+	
+	@GetMapping("/updateMarks")
+	public String checkMarksForUpdate(@RequestParam("enrollmentNumber") Integer Enrollment_Number,HttpSession session,Model model) {
+		Integer enrollment = (Integer) session.getAttribute("enrollmentNumber");
+		List<AddMarksBean> checkMarks = addMarksDao.checkMarksExist(Enrollment_Number, enrollment);
+		for (AddMarksBean elements : checkMarks) {
+			System.out.println(elements);
+		}
+		model.addAttribute("checkMarks",checkMarks);
+		return "redirect:/addMarks";
+	}
+	
 	@GetMapping("/listStudentForMarks")
 	public String addMarks(Model md) {
 		List<UserBean> users = userDao.getStudents();

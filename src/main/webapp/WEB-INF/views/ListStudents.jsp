@@ -42,6 +42,11 @@
       background-color: #3e8e41;
     }
   </style>
+  <script>
+    function confirmDelete() {
+      return confirm("Are you sure you want to delete this Student?");
+    }
+  </script>
 </head>
 <body>
   <table>
@@ -64,7 +69,7 @@
             <a href="viewMarks?enrollmentNumber=${user.enrollmentNumber}">View Marks</a>
           </td>
           <td>
-            <a href="deleteStudent?enrollmentNumber=${user.enrollmentNumber}">Delete</a>
+            <a href="deleteStudent?enrollmentNumber=${user.enrollmentNumber}" onclick="return confirmDelete()">Delete</a>
           </td>
         </tr>
       </c:forEach>

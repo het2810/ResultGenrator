@@ -18,6 +18,35 @@ public class AddMarksDao {
 	@Autowired
 	JdbcTemplate stmt;
 
+	// checkMarksExist or not
+	public List<AddMarksBean> checkMarksExist(Integer studentEnrollment, Integer facultyEnrollment) {
+		String subject = stmt.queryForObject("SELECT subjectRoleId FROM USERS WHERE ENROLLMENT_NUMBER = ?",
+				String.class, new Object[] { facultyEnrollment });
+		List<AddMarksBean> checkMarks = null;
+		if (subject.equals("C")) {
+			checkMarks = stmt.query(
+					"SELECT INTERNAL_C,EXTERNAL_C,PRACTICAL_C FROM RESULT WHERE ENROLLMENT_NUMBER = ?",
+					new BeanPropertyRowMapper<AddMarksBean>(AddMarksBean.class), studentEnrollment);
+		}
+		else if (subject.equals("JAVA") ) {
+			checkMarks = stmt.query(
+					"SELECT INTERNAL_JAVA,EXTERNAL_JAVA,PRACTICAL_JAVA FROM RESULT WHERE ENROLLMENT_NUMBER = ?",
+					new BeanPropertyRowMapper<AddMarksBean>(AddMarksBean.class), studentEnrollment);
+		}
+		else if (subject.equals("PYTHON")) {
+			checkMarks = stmt.query(
+					"SELECT INTERNAL_PYTHON,EXTERNAL_PYTHON,PRACTICAL_PYTHON FROM RESULT WHERE ENROLLMENT_NUMBER = ?",
+					new BeanPropertyRowMapper<AddMarksBean>(AddMarksBean.class), studentEnrollment);
+		}
+		else if (subject.equals("MATHS")) {
+			checkMarks = stmt.query(
+					"SELECT INTERNAL_MATHS,EXTERNAL_MATHS FROM RESULT WHERE ENROLLMENT_NUMBER = ?",
+					new BeanPropertyRowMapper<AddMarksBean>(AddMarksBean.class), studentEnrollment);
+		}
+		return checkMarks;
+	}
+
+	// addMarks into Result Table
 	public void addMarks(AddMarksBean add, Integer enrollmentNumber, Integer facultyEnrollment) {
 		System.out.println("----" + enrollmentNumber);
 		System.out.println(facultyEnrollment);
@@ -96,4 +125,5 @@ public class AddMarksDao {
 		System.out.println(subject);
 		return subject;
 	}
+
 }

@@ -47,7 +47,7 @@ public class AdminDashboardController {
 	@GetMapping("/deleteFaculty")
 	public String deleteFaculty(@RequestParam("enrollmentNumber") Integer Enrollment_Number) {
 		userDao.deleteFaculty(Enrollment_Number);
-		return "redirect:/listFaculty";
+		return "redirect:/listFaculties";
 	}
 	
 	@RequestMapping(value = "/addStudent", method = RequestMethod.POST)

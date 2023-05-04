@@ -41,6 +41,33 @@ a {
 a:hover {
 	background-color: #3e8e41;
 }
+
+thead {
+	background-color: #f5f5f5;
+}
+
+tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+
+th:first-child,
+td:first-child {
+	border-top: none;
+}
+
+td {
+	vertical-align: middle;
+}
+
+.student-info {
+	display: flex;
+	justify-content: space-between;
+}
+
+.student-info div {
+	margin-bottom: 10px;
+}
+
 </style>
 </head>
 <body>
@@ -49,52 +76,62 @@ a:hover {
 		<thead>
 			<tr>
 				<th>Enrollment Number</th>
+				<td>${student[0].enrollmentNumber}</td>
+			</tr>
+			<tr>
 				<th>First Name</th>
-				<th>Internal C</th>
-				<th>Internal Java</th>
-				<th>Internal Python</th>
-				<th>Internal Maths</th>
-				<th>External C</th>
-				<th>External Java</th>
-				<th>External Python</th>
-				<th>External Maths</th>
-				<th>Practical C</th>
-				<th>Practical Java</th>
-				<th>Practical Python</th>
-				<th>Total C</th>
-				<th>Total Java</th>
-				<th>Total Python</th>
-				<th>Total Maths</th>
-				<th>Grand Total</th>
+				<td>${student[0].firstName}</td>
+			</tr>
+		</thead>
+	</table>
+	<table>
+		<thead>
+			<tr>
+				<th>Subject</th>
+				<th>Internal Marks</th>
+				<th>External Marks</th>
+				<th>Practical Marks</th>
+				<th>Total Marks</th>
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${student}" var="s">
-				<tr>
-					<td>${s.enrollmentNumber}</td>
-					<td>${s.firstName}</td>
-					<td>${s.internal_C eq null ? "" : s.internal_C}</td>
-					<td>${s.internal_Java eq null ? "" : s.internal_Java}</td>
-					<td>${s.internal_Python eq null ? "" : s.internal_Python}</td>
-					<td>${s.internal_Maths eq null ? "" : s.internal_Maths}</td>
-					<td>${s.external_C eq null ? "" : s.external_C}</td>
-					<td>${s.external_Java eq null ? "" : s.external_Java}</td>
-					<td>${s.external_Python eq null ? "" : s.external_Python}</td>
-					<td>${s.external_Maths eq null ? "" : s.external_Maths}</td>
-					<td>${s.practical_C eq null ? "" : s.practical_C}</td>
-					<td>${s.practical_Java eq null ? "" : s.practical_Java}</td>
-					<td>${s.practical_Python eq null ? "" : s.practical_Python}</td>
-					<td>${s.total_C eq null ? "" : s.total_C}</td>
-					<td>${s.total_Java eq null ? "" : s.total_Java}</td>
-					<td>${s.total_Python eq null ? "" : s.total_Python}</td>
-					<td>${s.total_Maths eq null ? "" : s.total_Maths}</td>
-					<td>${s.total_Maths + s.total_Python + s.total_Java + s.total_C}</td>
-				</tr>
-			</c:forEach>
+			<tr>
+				<td>C</td>
+				<td>${student[0].internal_C eq null ? "" : student[0].internal_C}</td>
+				<td>${student[0].external_C eq null ? "" : student[0].external_C}</td>
+				<td>${student[0].practical_C eq null ? "" : student[0].practical_C}</td>
+				<td>${student[0].total_C eq null ? "" : student[0].total_C}</td>
+			</tr>
+			<tr>
+				<td>Java</td>
+				<td>${student[0].internal_Java eq null ? "" : student[0].internal_Java}</td>
+				<td>${student[0].external_Java eq null ? "" : student[0].external_Java}</td>
+				<td>${student[0].practical_Java eq null ? "" : student[0].practical_Java}</td>
+				<td>${student[0].total_Java eq null ? "" : student[0].total_Java}</td>
+			</tr>
+			<tr>
+				<td>Python</td>
+				<td>${student[0].internal_Python eq null ? "" : student[0].internal_Python}</td>
+				<td>${student[0].external_Python eq null ? "" : student[0].external_Python}</td>
+				<td>${student[0].practical_Python eq null ? "" : student[0].practical_Python}</td>
+				<td>${student[0].total_Python eq null ? "" : student[0].total_Python}</td>
+			</tr>
+			<tr>
+				<td>Maths</td>
+				<td>${student[0].internal_Maths eq null ? "" : student[0].internal_Maths}</td>
+				<td>${student[0].external_Maths eq null ? "" : student[0].external_Maths}</td>
+				<td>-</td>
+				<td>${student[0].total_Maths eq null ? "" : student[0].total_Maths}</td>
+			</tr>
 		</tbody>
+		<tfoot>
+			<tr>
+				<th>Grand Total</th>
+				<td>${student[0].total_Maths + student[0].total_Python + student[0].total_Java + student[0].total_C}</td>
+			</tr>
+		</tfoot>
 	</table>
 	<br>
 	<br>
 	<a href="listStudents">Back to Student List</a>
 </body>
-</html>

@@ -76,3 +76,12 @@ and add marks to the result table.
 -------------------------------------------------------------------------------------
 
 -> get a look on viewMarks and updateMarks in the facultyDashboard
+
+
+
+-----------------------------------------------------------------------------------------
+checkMarks method has been created now check it on the frontend side and make sure the 
+jsp works correctly
+
+
+->try to return -1 instead of null in dao
