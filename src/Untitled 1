@@ -84,4 +84,8 @@ checkMarks method has been created now check it on the frontend side and make su
 jsp works correctly
 
 
-->try to return -1 instead of null in dao
+->try to return -1 instead of null in dao ->this is not completely correct
+
+-----------------------------------------------------------------------------------------
+try to update grand total from the backend 
+->refer ChatGPT

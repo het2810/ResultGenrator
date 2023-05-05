@@ -72,5 +72,6 @@ public class FacultyDashboardController {
 		return "ListStudentForMarks";
 	}
 	
-
+	
+	
 }

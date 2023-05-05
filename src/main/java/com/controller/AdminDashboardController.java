@@ -41,6 +41,7 @@ public class AdminDashboardController {
 	@GetMapping("/deleteStudent")
 	public String deleteStudent(@RequestParam("enrollmentNumber") Integer Enrollment_Number) {
 		userDao.deleteStudent(Enrollment_Number);
+		addMarksDao.deleteStudent(Enrollment_Number);
 		return "redirect:/listStudents";
 	}
 
@@ -94,6 +95,11 @@ public class AdminDashboardController {
 		List<UserBean> users = userDao.getFaculties();
 		md.addAttribute("users", users);
 		return "ListFaculties";
+	}
+	
+	@GetMapping("/generateResult")
+	public String generateResult() {
+		return "GenerateResult";
 	}
 	
 }

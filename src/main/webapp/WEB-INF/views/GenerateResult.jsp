@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" isELIgnored="false"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,31 +51,48 @@
   <table>
     <thead>
       <tr>
-        <th>Enrollment Number</th>
-        <th>First Name</th>
-        <th>Email</th>
-        <th>View Marks</th>
-        <th>Delete</th>
+        <th rowspan="2">Enrollment Number</th>
+        <th rowspan="2">First Name</th>
+        <th colspan="3">C</th>
+        <th colspan="3">JAVA</th>
+        <th colspan="3">PYTHON</th>
+        <th colspan="2">MATHS</th>
+        <th rowspan="2">TOTAL</th>
+        <th rowspan="2">SPI</th>
+        <th rowspan="2">STATUS</th>
       </tr>
+      <tr>
+        <th>Internal Marks</th>
+        <th>External Marks</th>
+        <th>Practical Marks</th>
+        <th>Internal Marks</th>
+        <th>External Marks</th>
+        <th>Practical Marks</th>
+        <th>Internal Marks</th>
+        <th>External Marks</th>
+        <th>Practical Marks</th>
+        <th>Internal Marks</th>
+        <th>External Marks</th>
+    </tr>
     </thead>
     <tbody>
       <c:forEach items="${users}" var="user">
         <tr>
           <td>${user.enrollmentNumber}</td>
           <td>${user.firstName}</td>
-          <td>${user.email}</td>
-          <td>
-            <a href="viewMarks?enrollmentNumber=${user.enrollmentNumber}">View Marks</a>
-          </td>
-          <td>
-            <a href="deleteStudent?enrollmentNumber=${user.enrollmentNumber}" onclick="return confirmDelete()">Delete</a>
-          </td>
+          <td>1</td>
+          <td>2</td>
+          <td>3</td>
+          <td>4</td>
+          <td>5</td>
+          <td>6</td>
+          <td>7</td>
         </tr>
       </c:forEach>
     </tbody>
   </table>
   <br><br>
   <a href="dashboard">HOME</a>
-  <a href="generateResult">Generate Result</a>
+  <a href="listStudents">Student List</a>
 </body>
 </html>

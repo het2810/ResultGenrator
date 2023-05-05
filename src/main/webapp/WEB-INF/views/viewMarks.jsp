@@ -97,31 +97,31 @@ td {
 		<tbody>
 			<tr>
 				<td>C</td>
-				<td>${student[0].internal_C eq null ? "" : student[0].internal_C}</td>
-				<td>${student[0].external_C eq null ? "" : student[0].external_C}</td>
-				<td>${student[0].practical_C eq null ? "" : student[0].practical_C}</td>
-				<td>${student[0].total_C eq null ? "" : student[0].total_C}</td>
-			</tr>
+				<td>${student[0].internal_C eq "-1" ? "-" : student[0].internal_C}</td>
+                <td>${student[0].external_C eq "-1" ? "-" : student[0].external_C}</td>
+                <td>${student[0].practical_C eq "-1" ? "-" : student[0].practical_C}</td>
+                <td>${student[0].total_C eq "-1" ? "0" : student[0].total_C}</td>
+          </tr>
 			<tr>
 				<td>Java</td>
-				<td>${student[0].internal_Java eq null ? "" : student[0].internal_Java}</td>
-				<td>${student[0].external_Java eq null ? "" : student[0].external_Java}</td>
-				<td>${student[0].practical_Java eq null ? "" : student[0].practical_Java}</td>
-				<td>${student[0].total_Java eq null ? "" : student[0].total_Java}</td>
+				<td>${student[0].internal_Java eq "-1" ? "-" : student[0].internal_Java}</td>
+				<td>${student[0].external_Java eq "-1" ? "-" : student[0].external_Java}</td>
+				<td>${student[0].practical_Java eq "-1" ? "-" : student[0].practical_Java}</td>
+				<td>${student[0].total_Java eq "-1" ? "-" : student[0].total_Java}</td>
 			</tr>
 			<tr>
 				<td>Python</td>
-				<td>${student[0].internal_Python eq null ? "" : student[0].internal_Python}</td>
-				<td>${student[0].external_Python eq null ? "" : student[0].external_Python}</td>
-				<td>${student[0].practical_Python eq null ? "" : student[0].practical_Python}</td>
-				<td>${student[0].total_Python eq null ? "" : student[0].total_Python}</td>
+				<td>${student[0].internal_Python eq "-1" ? "-" : student[0].internal_Python}</td>
+				<td>${student[0].external_Python eq "-1" ? "-" : student[0].external_Python}</td>
+				<td>${student[0].practical_Python eq "-1" ? "-" : student[0].practical_Python}</td>
+				<td>${student[0].total_Python eq "-1" ? "-" : student[0].total_Python}</td>
 			</tr>
 			<tr>
 				<td>Maths</td>
-				<td>${student[0].internal_Maths eq null ? "" : student[0].internal_Maths}</td>
-				<td>${student[0].external_Maths eq null ? "" : student[0].external_Maths}</td>
+				<td>${student[0].internal_Maths eq "-1" ? "-" : student[0].internal_Maths}</td>
+				<td>${student[0].external_Maths eq "-1" ? "-" : student[0].external_Maths}</td>
 				<td>-</td>
-				<td>${student[0].total_Maths eq null ? "" : student[0].total_Maths}</td>
+				<td>${student[0].total_Maths eq "-1" ? "-" : student[0].total_Maths}</td>
 			</tr>
 		</tbody>
 		<tfoot>
