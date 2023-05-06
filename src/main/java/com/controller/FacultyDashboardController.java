@@ -67,7 +67,7 @@ public class FacultyDashboardController {
 	
 	@GetMapping("/listStudentForMarks")
 	public String addMarks(Model md) {
-		List<UserBean> users = userDao.getStudents();
+		List<AddMarksBean> users = userDao.getStudentResult();
 		md.addAttribute("users", users);
 		return "ListStudentForMarks";
 	}

@@ -8,7 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-
+import com.bean.AddMarksBean;
 import com.bean.UserBean;
 import com.constants.Role;
 
@@ -55,6 +55,13 @@ public class UserDao {
 		
 		return stmt.query("select * from users where Role = 2",new BeanPropertyRowMapper<UserBean>(UserBean.class));
 	}
+	
+public List<AddMarksBean> getStudentResult (){
+		
+//		return stmt.query("select u.firstName,u.enrollment_number, r.* from users u , result r  where r.enrollment_number = u.enrollment_number",new BeanPropertyRowMapper<AddMarksBean>(AddMarksBean.class));
+	return stmt.query("select u.firstName,u.enrollment_number,r.internal_c,r.internal_java,r.internal_python,r.internal_maths from users u left join  result r  on u.enrollment_number = r.enrollment_number where u.role = 2",new BeanPropertyRowMapper<AddMarksBean>(AddMarksBean.class));
+
+}
 	public List<UserBean> getFaculties (){
 		
 		return stmt.query("select * from users where Role = 3",new BeanPropertyRowMapper<UserBean>(UserBean.class));

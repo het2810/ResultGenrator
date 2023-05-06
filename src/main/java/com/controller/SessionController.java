@@ -116,7 +116,7 @@ public class SessionController {
 			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 			if (passwordEncoder.matches(userBean.getPassword(), user.getPassword())) {
 				// User credentials are valid, so redirect to the dashboard or home page
-
+				session.setAttribute("currentUser", user);
 				session.setAttribute("loggedIn", true);
 				session.setAttribute("enrollmentNumber", user.getEnrollmentNumber());
 				int role = user.getRole();

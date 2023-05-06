@@ -44,6 +44,8 @@ a:hover {
 </style>
 </head>
 <body>
+
+	${currentUser.subjectRoleId }
 	<table>
 		<thead>
 			<tr>
@@ -52,22 +54,53 @@ a:hover {
 			</tr>
 		</thead>
 		<tbody>
+
+
 			<c:forEach items="${users}" var="user">
 				<tr>
 					<td>${user.enrollmentNumber}</td>
 					<td>${user.firstName}</td>
-					<td><c:set var="checkMarks"
-							value="${addMarksDao.checkMarksExist(user.enrollmentNumber, session.enrollmentNumber)}" />
-						<c:choose>
-							<c:when test="${empty checkMarks}">
+					<td><c:if test="${currentUser.subjectRoleId == 'MATHS' }">
+							<c:if test="${user.internal_Maths == null }">
 								<a href="addMarks?enrollmentNumber=${user.enrollmentNumber}">Add
-									Marks</a>
-							</c:when>
-							<c:otherwise>
+									Marks</a> 
+							</c:if>
+
+							<c:if test="${user.internal_Maths != null }">
 								<a href="updateMarks?enrollmentNumber=${user.enrollmentNumber}">Update
 									Marks</a>
-							</c:otherwise>
-						</c:choose></td>
+							</c:if>
+						</c:if> <c:if test="${currentUser.subjectRoleId == 'JAVA' }">
+							<c:if test="${user.internal_Java == null }">
+								<a href="addMarks?enrollmentNumber=${user.enrollmentNumber}">Add
+									Marks</a> 
+							</c:if>
+
+							<c:if test="${user.internal_Java != null }">
+								<a href="updateMarks?enrollmentNumber=${user.enrollmentNumber}">Update
+									Marks</a>
+							</c:if>
+						</c:if> <c:if test="${currentUser.subjectRoleId == 'C' }">
+							<c:if test="${user.internal_C == null }">
+								<a href="addMarks?enrollmentNumber=${user.enrollmentNumber}">Add
+									Marks</a>
+							</c:if>
+
+							<c:if test="${user.internal_C != null }">
+								<a href="updateMarks?enrollmentNumber=${user.enrollmentNumber}">Update
+									Marks</a>
+							</c:if>
+						</c:if> <c:if test="${currentUser.subjectRoleId == 'PYTHON' }">
+							<c:if test="${user.internal_Python == null }">
+								<a href="addMarks?enrollmentNumber=${user.enrollmentNumber}">Add
+									Marks</a>
+							</c:if>
+
+							<c:if test="${user.internal_Python != null }">
+								<a href="updateMarks?enrollmentNumber=${user.enrollmentNumber}">Update
+									Marks</a>
+							</c:if>
+						</c:if></td>
 				</tr>
 			</c:forEach>
 
