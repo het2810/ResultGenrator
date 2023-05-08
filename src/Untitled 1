@@ -12,26 +12,35 @@ Duplication handling in Add Faculty-Done
 
 ----------------------------------------------------------------------
 CREATE TABLE Result (
-Enrollment_Number INT PRIMARY KEY,
+Enrollment_Number INTEGER PRIMARY KEY,
 firstName VARCHAR(255),
-Internal_C INT,
-External_C INT,
-Practical_C INT,
-Internal_Java INT,
-External_Java INT,
-Practical_Java INT,
-Internal_Python INT,
-External_Python INT,
-Practical_Python INT,
-Internal_Maths INT,
-External_Maths INT,
-total_C INT,
-total_Java INT,
-total_Python INT,
-total_Maths INT,
-Total INT,
+Internal_C INTEGER,
+External_C INTEGER,
+Practical_C INTEGER,
+Internal_Java INTEGER,
+External_Java INTEGER,
+Practical_Java INTEGER,
+Internal_Python INTEGER,
+External_Python INTEGER,
+Practical_Python INTEGER,
+Internal_Maths INTEGER,
+External_Maths INTEGER,
+total_C INTEGER GENERATED ALWAYS AS (Internal_C + External_C + Practical_C) STORED,
+total_Java INTEGER GENERATED ALWAYS AS (Internal_JAVA + External_JAVA + Practical_JAVA) STORED,
+total_Python INTEGER GENERATED ALWAYS AS (Internal_PYTHON + External_PYTHON + Practical_PYTHON) STORED,
+total_Maths INTEGER GENERATED ALWAYS AS (Internal_Maths + External_Maths ) STORED,
+Total INTEGER GENERATED ALWAYS AS (total_Python+ total_Maths + total_Java + total_C) STORED,
 SPI DECIMAL(4,2),
 Status VARCHAR(10)
+);
+
+
+
+CREATE TABLE marks (
+  sub1 INT,
+  sub2 INT,
+  sub3 INT,
+  total INT GENERATED ALWAYS AS (sub1 + sub2 + sub3) STORED
 );
 
 
@@ -89,3 +98,6 @@ jsp works correctly
 -----------------------------------------------------------------------------------------
 try to update grand total from the backend 
 ->refer ChatGPT
+baki hai 
+---------------------------------------------------------------------------
+update link done 

@@ -2,49 +2,17 @@ package com.dao;
 
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.bean.AddMarksBean;
-import com.bean.UserBean;
-import com.mysql.cj.Session;
 
 @Repository
 public class AddMarksDao {
 	@Autowired
 	JdbcTemplate stmt;
-
-	// checkMarksExist or not
-	public List<AddMarksBean> checkMarksExist(Integer studentEnrollment, Integer facultyEnrollment) {
-		String subject = stmt.queryForObject("SELECT subjectRoleId FROM USERS WHERE ENROLLMENT_NUMBER = ?",
-				String.class, new Object[] { facultyEnrollment });
-		List<AddMarksBean> checkMarks = null;
-		if (subject.equals("C")) {
-			checkMarks = stmt.query(
-					"SELECT INTERNAL_C,EXTERNAL_C,PRACTICAL_C FROM RESULT WHERE ENROLLMENT_NUMBER = ?",
-					new BeanPropertyRowMapper<AddMarksBean>(AddMarksBean.class), studentEnrollment);
-		}
-		else if (subject.equals("JAVA") ) {
-			checkMarks = stmt.query(
-					"SELECT INTERNAL_JAVA,EXTERNAL_JAVA,PRACTICAL_JAVA FROM RESULT WHERE ENROLLMENT_NUMBER = ?",
-					new BeanPropertyRowMapper<AddMarksBean>(AddMarksBean.class), studentEnrollment);
-		}
-		else if (subject.equals("PYTHON")) {
-			checkMarks = stmt.query(
-					"SELECT INTERNAL_PYTHON,EXTERNAL_PYTHON,PRACTICAL_PYTHON FROM RESULT WHERE ENROLLMENT_NUMBER = ?",
-					new BeanPropertyRowMapper<AddMarksBean>(AddMarksBean.class), studentEnrollment);
-		}
-		else if (subject.equals("MATHS")) {
-			checkMarks = stmt.query(
-					"SELECT INTERNAL_MATHS,EXTERNAL_MATHS FROM RESULT WHERE ENROLLMENT_NUMBER = ?",
-					new BeanPropertyRowMapper<AddMarksBean>(AddMarksBean.class), studentEnrollment);
-		}
-		return checkMarks;
-	}
 
 	// addMarks into Result Table
 	public void addMarks(AddMarksBean add, Integer enrollmentNumber, Integer facultyEnrollment) {
@@ -63,50 +31,44 @@ public class AddMarksDao {
 
 			// Update marks
 			if (subject.equals("C")) {
-				String updateCMarks = "UPDATE RESULT SET INTERNAL_C=?, EXTERNAL_C=?, PRACTICAL_C=?, TOTAL_C=?,TOTAL= TOTAL + ? WHERE ENROLLMENT_NUMBER=?";
+				String updateCMarks = "UPDATE RESULT SET INTERNAL_C=?, EXTERNAL_C=?, PRACTICAL_C=? WHERE ENROLLMENT_NUMBER=?";
 				stmt.update(updateCMarks, add.getInternal_C(), add.getExternal_C(), add.getPractical_C(),
-						(add.getPractical_C() + add.getExternal_C() + add.getInternal_C()),(add.getPractical_C() + add.getExternal_C() + add.getInternal_C()), enrollmentNumber);
-			} else if (subject.equals("JAVA")) {
-				String updateJavaMarks = "UPDATE RESULT SET INTERNAL_JAVA=?, EXTERNAL_JAVA=?, PRACTICAL_JAVA=?, TOTAL_JAVA=?,TOTAL = TOTAL + ? WHERE ENROLLMENT_NUMBER=?";
-				stmt.update(updateJavaMarks, add.getInternal_Java(), add.getExternal_Java(), add.getPractical_Java(),
-						(add.getPractical_Java() + add.getExternal_Java() + add.getInternal_Java()),(add.getPractical_Java() + add.getExternal_Java() + add.getInternal_Java()), enrollmentNumber);
-			} else if (subject.equals("PYTHON")) {
-				String updatePythonMarks = "UPDATE RESULT SET INTERNAL_PYTHON=?, EXTERNAL_PYTHON=?, PRACTICAL_PYTHON=?, TOTAL_PYTHON=?,TOTAL = TOTAL + ? WHERE ENROLLMENT_NUMBER=?";
-				stmt.update(updatePythonMarks, add.getInternal_Python(), add.getExternal_Python(),
-						add.getPractical_Python(),
-						(add.getPractical_Python() + add.getExternal_Python() + add.getInternal_Python()),
-						(add.getPractical_Python() + add.getExternal_Python() + add.getInternal_Python()),
 						enrollmentNumber);
+			} else if (subject.equals("JAVA")) {
+				String updateJavaMarks = "UPDATE RESULT SET INTERNAL_JAVA=?, EXTERNAL_JAVA=?, PRACTICAL_JAVA=? WHERE ENROLLMENT_NUMBER=?";
+				stmt.update(updateJavaMarks, add.getInternal_Java(), add.getExternal_Java(), add.getPractical_Java(),
+						enrollmentNumber);
+			} else if (subject.equals("PYTHON")) {
+				String updatePythonMarks = "UPDATE RESULT SET INTERNAL_PYTHON=?, EXTERNAL_PYTHON=?, PRACTICAL_PYTHON=? WHERE ENROLLMENT_NUMBER=?";
+				stmt.update(updatePythonMarks, add.getInternal_Python(), add.getExternal_Python(),
+						add.getPractical_Python(), enrollmentNumber);
 			} else if (subject.equals("MATHS")) {
-				String updateMathsMarks = "UPDATE RESULT SET INTERNAL_MATHS=?, EXTERNAL_MATHS=?, TOTAL_MATHS=?,TOTAL = TOTAL + ? WHERE ENROLLMENT_NUMBER=?";
-				stmt.update(updateMathsMarks, add.getInternal_Maths(), add.getExternal_Maths(),
-						(add.getExternal_Maths() + add.getInternal_Maths()), (add.getExternal_Maths() + add.getInternal_Maths()),enrollmentNumber);
+				String updateMathsMarks = "UPDATE RESULT SET INTERNAL_MATHS=?, EXTERNAL_MATHS=? WHERE ENROLLMENT_NUMBER=?";
+				stmt.update(updateMathsMarks, add.getInternal_Maths(), add.getExternal_Maths(), enrollmentNumber);
 			}
 
 		} else {
 
 			// Insert marks
 			if (subject.equals("C")) {
-				String insertCMarks = "INSERT INTO RESULT (ENROLLMENT_NUMBER,FIRSTNAME,INTERNAL_C,EXTERNAL_C,PRACTICAL_C,total_C) VALUES (?,?,?,?,?,?)";
+				String insertCMarks = "INSERT INTO RESULT (ENROLLMENT_NUMBER,FIRSTNAME,INTERNAL_C,EXTERNAL_C,PRACTICAL_C) VALUES (?,?,?,?,?)";
 				stmt.update(insertCMarks, enrollmentNumber, firstName, add.getInternal_C(), add.getExternal_C(),
-						add.getPractical_C(), (add.getPractical_C() + add.getExternal_C() + add.getInternal_C()));
+						add.getPractical_C());
 			} else if (subject.equals("JAVA")) {
-				String insertJavaMarks = "INSERT INTO RESULT (ENROLLMENT_NUMBER,FIRSTNAME,INTERNAL_JAVA,EXTERNAL_JAVA,PRACTICAL_JAVA,total_JAVA) VALUES (?,?,?,?,?,?)";
+				String insertJavaMarks = "INSERT INTO RESULT (ENROLLMENT_NUMBER,FIRSTNAME,INTERNAL_JAVA,EXTERNAL_JAVA,PRACTICAL_JAVA) VALUES (?,?,?,?,?)";
 				stmt.update(insertJavaMarks, enrollmentNumber, firstName, add.getInternal_Java(),
-						add.getExternal_Java(), add.getPractical_Java(),
-						(add.getPractical_Java() + add.getExternal_Java() + add.getInternal_Java()));
+						add.getExternal_Java(), add.getPractical_Java());
 
 			} else if (subject.equals("PYTHON")) {
-				String insertPythonMarks = "INSERT INTO RESULT (ENROLLMENT_NUMBER,FIRSTNAME,INTERNAL_PYTHON,EXTERNAL_PYTHON,PRACTICAL_PYTHON,total_PYTHON) VALUES (?,?,?,?,?,?)";
+				String insertPythonMarks = "INSERT INTO RESULT (ENROLLMENT_NUMBER,FIRSTNAME,INTERNAL_PYTHON,EXTERNAL_PYTHON,PRACTICAL_PYTHON) VALUES (?,?,?,?,?)";
 				stmt.update(insertPythonMarks, enrollmentNumber, firstName, add.getInternal_Python(),
-						add.getExternal_Python(), add.getPractical_Python(),
-						(add.getPractical_Python() + add.getExternal_Python() + add.getInternal_Python()));
+						add.getExternal_Python(), add.getPractical_Python());
 			}
 			// add marks for Maths
 			else if (subject.equals("MATHS")) {
-				String insertMathsMarks = "INSERT INTO RESULT (ENROLLMENT_NUMBER,FIRSTNAME,INTERNAL_MATHS,EXTERNAL_MATHS,total_MATHS) VALUES (?,?,?,?,?)";
+				String insertMathsMarks = "INSERT INTO RESULT (ENROLLMENT_NUMBER,FIRSTNAME,INTERNAL_MATHS,EXTERNAL_MATHS) VALUES (?,?,?,?)";
 				stmt.update(insertMathsMarks, enrollmentNumber, firstName, add.getInternal_Maths(),
-						add.getExternal_Maths(), (add.getExternal_Maths() + add.getInternal_Maths()));
+						add.getExternal_Maths());
 			}
 
 		}
@@ -119,9 +81,9 @@ public class AddMarksDao {
 				new BeanPropertyRowMapper<AddMarksBean>(AddMarksBean.class), studentEnrollment);
 		return studentMarks;
 	}
-	
+
 	public void deleteStudent(Integer enrollmentNumber) {
-		stmt.update("DELETE FROM result WHERE Enrollment_Number =?",enrollmentNumber);
+		stmt.update("DELETE FROM result WHERE Enrollment_Number =?", enrollmentNumber);
 	}
 
 	public String getSubjectFromEnrollment(Integer facultyEnrollment) {
@@ -131,4 +93,8 @@ public class AddMarksDao {
 		return subject;
 	}
 
+	public List<AddMarksBean> getStudentsForResult() {
+
+		return stmt.query("select * from result where total is not null", new BeanPropertyRowMapper<AddMarksBean>(AddMarksBean.class));
+	}
 }

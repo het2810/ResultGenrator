@@ -98,8 +98,11 @@ public class AdminDashboardController {
 	}
 	
 	@GetMapping("/generateResult")
-	public String generateResult() {
+	public String generateResult(Model md) {
+		List<AddMarksBean> studentForResult = addMarksDao.getStudentsForResult();
+		md.addAttribute("students",studentForResult);
 		return "GenerateResult";
 	}
+	
 	
 }

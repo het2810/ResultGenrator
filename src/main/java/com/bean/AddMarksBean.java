@@ -20,8 +20,15 @@ public class AddMarksBean {
 	Integer total_C;
 	Integer total_Java;
 	Integer total_Python;
-	Integer  total_Maths;
-
+	Integer total_Maths;
+	Integer total;
+	
+	public Integer getTotal() {
+		return total;
+	}
+	public void setTotal(Integer total) {
+		this.total = total;
+	}
 	public Integer getEnrollmentNumber() {
 		return enrollmentNumber;
 	}

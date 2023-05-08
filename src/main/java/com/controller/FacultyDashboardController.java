@@ -54,16 +54,17 @@ public class FacultyDashboardController {
 		return "redirect:/listStudentForMarks";
 	}
 	
-	@GetMapping("/updateMarks")
-	public String checkMarksForUpdate(@RequestParam("enrollmentNumber") Integer Enrollment_Number,HttpSession session,Model model) {
+	@RequestMapping(value = "/updateMarks", method = { RequestMethod.GET })
+	public String updateMarks(@ModelAttribute("AddMarksBean") AddMarksBean add,
+			@RequestParam("enrollmentNumber") Integer Enrollment_Number, HttpSession session,Model model) {
 		Integer enrollment = (Integer) session.getAttribute("enrollmentNumber");
-		List<AddMarksBean> checkMarks = addMarksDao.checkMarksExist(Enrollment_Number, enrollment);
-		for (AddMarksBean elements : checkMarks) {
-			System.out.println(elements);
-		}
-		model.addAttribute("checkMarks",checkMarks);
-		return "redirect:/addMarks";
+		System.out.println(enrollment);
+		String subject = addMarksDao.getSubjectFromEnrollment(enrollment);
+		System.out.println(subject);
+		model.addAttribute("subject", subject);
+		return "AddMarks";
 	}
+
 	
 	@GetMapping("/listStudentForMarks")
 	public String addMarks(Model md) {
