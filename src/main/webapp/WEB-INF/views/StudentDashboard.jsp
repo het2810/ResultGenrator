@@ -103,10 +103,7 @@
   </div>
 
   <div id="container">
-    <a href="addStudent" class="big-button">Add Student</a>
-    <a href="addFaculty" class="big-button">Add Faculty</a>
-    <a href="listStudents" class="big-button">List Students</a>
-    <a href="listFaculties" class="big-button">List Faculties</a>
+    <a href="viewResult" class="big-button">View Result</a>
   </div>
 
 

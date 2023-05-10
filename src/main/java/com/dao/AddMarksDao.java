@@ -95,6 +95,15 @@ public class AddMarksDao {
 
 	public List<AddMarksBean> getStudentsForResult() {
 
-		return stmt.query("select * from result where total is not null", new BeanPropertyRowMapper<AddMarksBean>(AddMarksBean.class));
+		return stmt.query("select * from result where total is not null ", new BeanPropertyRowMapper<AddMarksBean>(AddMarksBean.class));
 	}
+	public void updateResultStatus() {
+		stmt.update("UPDATE RESULT SET CHECKDOWNLOAD=1 WHERE TOTAL IS NOT NULL ");
+	}
+	
+	public List<AddMarksBean> getResult(Integer studentEnrollment) {
+
+		return stmt.query("select * from result where Enrollment_Number =? ", new BeanPropertyRowMapper<AddMarksBean>(AddMarksBean.class),studentEnrollment);
+	}
+	
 }

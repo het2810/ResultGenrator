@@ -101,6 +101,7 @@ public class AdminDashboardController {
 	public String generateResult(Model md) {
 		List<AddMarksBean> studentForResult = addMarksDao.getStudentsForResult();
 		md.addAttribute("students",studentForResult);
+		addMarksDao.updateResultStatus();
 		return "GenerateResult";
 	}
 	

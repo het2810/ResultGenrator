@@ -57,7 +57,7 @@ public class SessionController {
 		model.addAttribute("message", "Welcome to the dashboard!");
 
 		// Display the dashboard page
-		return "redirect:/studentDashboard";
+		return "StudentDashboard";
 	}
 
 	@GetMapping("/facultyDashboard")

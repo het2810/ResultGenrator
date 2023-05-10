@@ -22,7 +22,14 @@ public class AddMarksBean {
 	Integer total_Python;
 	Integer total_Maths;
 	Integer total;
+	Integer checkDownload;
 	
+	public Integer getCheckDownload() {
+		return checkDownload;
+	}
+	public void setCheckDownload(Integer checkDownload) {
+		this.checkDownload = checkDownload;
+	}
 	public Integer getTotal() {
 		return total;
 	}
